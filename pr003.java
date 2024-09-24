@@ -126,6 +126,29 @@ class pr003{
 	int sum = 0;
 	for(i8 = 1; i8 <= 5; sum += i8++);
 	System.out.println("Сумма чисел равна " +sum);
+	
+	System.out.println("\n");
+	ch = 'а';
+	while (ch <= 'я') {
+		System.out.print(ch);
+		ch++;
+	}
+	System.out.println();
+
+	System.out.println("\n");
+
+	int e;
+	int result;
+	for (int i9=0; i9 < 10; i9++) {
+		result = 1;
+		e = i9;
+		while(e > 0) {
+			result *=2;
+			e--;
+		}
+		System.out.println("2 в степени " + i9 + " равно " + result);
+	}
+
 	}
 }
 
