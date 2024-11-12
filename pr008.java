@@ -68,7 +68,43 @@ class Outer {
                 }
 	}
 }
-
+class VarArgs {
+	static void vaTest(int ... v) {
+		System.out.println("Kolichestvo argumentov: " + v.length);
+		System.out.println("Soderjimoe massiva argumentov: ");
+		for(int i=0; i<v.length; i++)
+			System.out.println("argument " + i + ": " + v[i]);
+		System.out.println();
+	}
+	static void vaTest2(String msg, int ... v) {
+		System.out.println(msg + v.length);
+		System.out.println("Soderjimoe massiva argumentov: ");
+                for(int i=0; i<v.length; i++)
+                        System.out.println("argument " + i + ": " + v[i]);
+                System.out.println();
+	}
+	static void vaTest3(int ... v) {
+                System.out.println("vaTest3(int ...)"+ " Kolichestvo argumentov: " + v.length);
+                System.out.println("Soderjimoe massiva argumentov: ");
+                for(int i=0; i<v.length; i++)
+                        System.out.println("argument " + i + ": " + v[i]);
+                System.out.println();
+        }
+	static void vaTest3(boolean ... v) {
+                System.out.println("vaTest3(boolean ...)" + " Kolichestvo argumentov: " + v.length);
+                System.out.println("Soderjimoe massiva argumentov: ");
+                for(int i=0; i<v.length; i++)
+                        System.out.println("argument " + i + ": " + v[i]);
+                System.out.println();
+        }
+	static void vaTest3(String msg, int ... v) {
+                System.out.println("vaTest3(String, int ...) " + msg + v.length);
+                System.out.println("Soderjimoe massiva argumentov: ");
+                for(int i=0; i<v.length; i++)
+                        System.out.println("argument " + i + ": " + v[i]);
+                System.out.println();
+        }
+}
 class pr008 {
 	public static void main(String[] args) {
 		Factorial f = new Factorial();
@@ -119,5 +155,44 @@ class pr008 {
 		Outer outOb = new Outer(x);
 
 		outOb.analyze();
+
+		class ShowBt {
+        		int numbits;
+       			ShowBt(int n) {
+                		numbits =n;
+        		}
+       			void show(long val) {
+        		        long mask = 1;
+        		        mask <<= numbits-1;
+        		        int spacer = 0;
+		                for(;mask!=0;mask>>>=1) {
+                		        if((val & mask) != 0)
+        		                        System.out.print("1");
+        		                else
+					       	System.out.print("0");
+        		                spacer++;
+		                        if((spacer%8) == 0) {
+                        		        System.out.print(" ");
+                        	       		spacer = 0;
+                        		}
+               			}
+        		System.out.println();
+        		}
+		}
+		System.out.println();
+		for(byte b=0; b<10; b++) {
+			ShowBt byteval = new ShowBt(8);
+			System.out.print(b + " v dvoichnom vide: ");
+			byteval.show(b);
+		}
+		System.out.println();
+		VarArgs.vaTest(10);
+		VarArgs.vaTest(1,2,3);
+		VarArgs.vaTest();
+
+		System.out.println();
+		VarArgs.vaTest2("Odin argument peremennoi dlini ", 10);
+		VarArgs.vaTest2("Dva argumenta peremennoi dlini ", 1, 2, 3);
+		VarArgs.vaTest2("Bez argumentov peremennoi dlini ");
 	}
 }
