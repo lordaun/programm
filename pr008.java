@@ -23,6 +23,51 @@ class StaticDemo {
 		return x+y;
 	}
 }
+class StaticBlock {
+	static double rootOf2;
+	static double rootOf3;
+	static {
+		System.out.println("Vnutri staticheskogo blocka");
+		rootOf2= Math.sqrt(2.0);
+		rootOf3= Math.sqrt(3.0);
+	}
+	StaticBlock(String msg) {
+		System.out.println(msg);
+	}
+}
+class Outer {
+	int[] nums;
+	Outer(int[] n) {
+		nums = n;
+	}
+	
+	void analyze() {
+		Inner inOb = new Inner();
+		System.out.println("Minimalnoe znacheniye: " + inOb.min());
+		System.out.println("Maximalnoe znacheniye: " + inOb.max());
+		System.out.println("Sredneye znacheniye: " + inOb.avg());
+	}
+	class Inner {
+		int min() {
+			int m = nums[0];
+			for(int i=1; i<nums.length; i++)
+				if(nums[i] < m) m = nums[i];
+			return m;
+		}
+		int max() {
+                        int m = nums[0];
+                        for(int i=1; i<nums.length; i++)
+                                if(nums[i] > m) m = nums[i];
+                        return m;
+                }
+		int avg() {
+                        int a = 0;
+                        for(int i=0; i<nums.length; i++)
+                                a += nums[i];
+                        return a/nums.length;
+                }
+	}
+}
 
 class pr008 {
 	public static void main(String[] args) {
@@ -63,5 +108,16 @@ class pr008 {
 
 		System.out.println("ob1.sum(): " + ob1.sum());
                 System.out.println("ob2.sum(): " + ob2.sum());
+
+		System.out.println();
+		StaticBlock ob = new StaticBlock("Vnutri konstructora");
+
+		System.out.println("kvadratniy koren' iz 2: "+ StaticBlock.rootOf2);
+		System.out.println("kvadratniy koren' iz 3: "+ StaticBlock.rootOf3);
+		
+		int[] x = {3, 2, 1, 5, 6, 9, 7, 2};
+		Outer outOb = new Outer(x);
+
+		outOb.analyze();
 	}
 }
