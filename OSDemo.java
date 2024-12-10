@@ -36,6 +36,6 @@ class QSDemo {
 		System.out.print("Otsortirovaniy massiv: ");
 		for(i =0; i < a.length; i++)
 			System.out.print(a[i]);
-		System.out.printl();
+		System.out.println();
 	}
 }
